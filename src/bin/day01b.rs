@@ -43,17 +43,21 @@ impl FromStr for Food {
 fn main() {
     let input = include_str!("../../input/day01.txt");
     
-    let elves: Vec<Elf> = input
+    let mut elves: Vec<Elf> = input
     .split("\n\n")
     .map(|s| s.parse::<Elf>())
     .collect::<Result<Vec<Elf>, _>>()
     .unwrap();
 
-    let max_calories = elves
+    elves.sort_by_key(total_calories);
+
+    let (_, top3elves) = elves.split_at(elves.len() - 3);
+
+    let top3calories: i32 = top3elves
     .iter()
     .map(total_calories)
-    .max()
-    .unwrap();
+    .sum();
 
-    println!("{}", max_calories);
+
+    println!("{}", top3calories);
 }

@@ -8,10 +8,6 @@ struct Range {
 }
 
 impl Range {
-    fn contains(&self, other: &Range) -> bool {
-        self.lower <= other.lower && other.upper <= self.upper
-    }
-
     fn overlaps(&self, other: &Range) -> bool {
         self.intersection(other).is_some()
     }

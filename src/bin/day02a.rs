@@ -1,4 +1,4 @@
-use std::str::FromStr;
+use std::{str::FromStr, fs};
 
 struct Strategy {
     rounds: Vec<Round>,
@@ -102,7 +102,8 @@ impl From<Strategy> for i32 {
 }
 
 fn main() {
-    let strategy: Strategy = include_str!("../../input/day02.txt").parse().unwrap();
+    let input = fs::read_to_string("input/day02.txt").unwrap();
+    let strategy: Strategy = input.parse().unwrap();
 
     let total_score: i32 = strategy.into();
 

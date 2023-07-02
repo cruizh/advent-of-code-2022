@@ -1,6 +1,7 @@
-fn main() {
-    let input = include_str!("../../input/day06.txt");
+use std::fs::read_to_string;
 
+fn main() {
+    let input = read_to_string("input/day06.txt").unwrap();
     let input_chars: Vec<char> = input.chars().collect();
 
     const WINDOW_SIZE: usize = 14;

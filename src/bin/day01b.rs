@@ -1,4 +1,4 @@
-use std::str::FromStr;
+use std::{str::FromStr,fs};
 
 #[derive(Debug)]
 struct Elf {
@@ -41,7 +41,7 @@ impl FromStr for Food {
 }
 
 fn main() {
-    let input = include_str!("../../input/day01.txt");
+    let input = fs::read_to_string("input/day01.txt").unwrap();
     
     let mut elves: Vec<Elf> = input
     .split("\n\n")

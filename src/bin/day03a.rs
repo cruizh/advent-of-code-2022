@@ -1,4 +1,4 @@
-use std::collections::HashSet;
+use std::{collections::HashSet, fs};
 
 type Compartment = HashSet<char>;
 
@@ -19,8 +19,8 @@ fn priority(item: char) -> Option<i32> {
 }
 
 fn main() {
-
-    let result: i32 = include_str!("../../input/day03.txt").lines().map(|line: &str| {
+    let input = fs::read_to_string("input/day03.txt").unwrap();
+    let result: i32 = input.lines().map(|line: &str| {
         let (left, right) = line.split_at(line.len()/2);
         let left_hash = compartment_from_str(left);
         let common = right.chars().find(|c| left_hash.contains(c)).unwrap();

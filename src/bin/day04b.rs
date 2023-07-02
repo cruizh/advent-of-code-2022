@@ -1,3 +1,4 @@
+use std::fs::read_to_string;
 use std::str::FromStr;
 use std::cmp::{max,min};
 
@@ -35,7 +36,7 @@ impl FromStr for Range {
 }
 
 fn main() {
-    let result = include_str!("../../input/day04.txt")
+    let result = read_to_string("input/day04.txt").unwrap()
     .lines()
     .filter(|line| {
         let (first, second) = line.split_once(',').unwrap();

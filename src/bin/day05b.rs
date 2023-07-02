@@ -1,4 +1,4 @@
-use std::str::FromStr;
+use std::{str::FromStr, fs::read_to_string};
 
 type Stack = Vec<char>;
 
@@ -91,7 +91,8 @@ impl FromStr for Action {
 }
 
 fn main() {
-    let (initial_state, actions_spec) = include_str!("../../input/day05.txt")
+    let input = read_to_string("input/day05.txt").unwrap();
+    let (initial_state, actions_spec) = input
         .split_once("\n\n")
         .unwrap();
     let crates: Vec<Stack> = parse_to_crates(initial_state);
@@ -130,9 +131,16 @@ fn test_initial_state() {
         vec!['G', 'V', 'Z', 'Q', 'H', 'T', 'C', 'W'],
     ];
 
-    let (initial_state_spec, _) = include_str!("../../input/day05.txt")
-        .split_once("\n\n")
-        .unwrap();
+    let initial_state_spec = concat!(
+        "                        [R] [J] [W]\n",
+        "            [R] [N]     [T] [T] [C]\n",
+        "[R]         [P] [G]     [J] [P] [T]\n",
+        "[Q]     [C] [M] [V]     [F] [F] [H]\n",
+        "[G] [P] [M] [S] [Z]     [Z] [C] [Q]\n",
+        "[P] [C] [P] [Q] [J] [J] [P] [H] [Z]\n",
+        "[C] [T] [H] [T] [H] [P] [G] [L] [V]\n",
+        "[F] [W] [B] [L] [P] [D] [L] [N] [G]\n",
+        " 1   2   3   4   5   6   7   8   9 ");
     let crates: Vec<Stack> = parse_to_crates(initial_state_spec);
     assert_eq!(initial_state, crates);
 }

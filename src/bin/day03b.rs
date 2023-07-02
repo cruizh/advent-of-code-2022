@@ -1,4 +1,4 @@
-use std::collections::HashSet;
+use std::{collections::HashSet, fs};
 
 fn priority(item: &char) -> Option<i32> {
     match *item {
@@ -9,8 +9,8 @@ fn priority(item: &char) -> Option<i32> {
 }
 
 fn main() {
-
-    let commons: Vec<char> = include_str!("../../input/day03.txt")
+    let input = fs::read_to_string("input/day03.txt").unwrap();
+    let commons: Vec<char> = input
         .lines()
         .collect::<Vec<_>>()
         .chunks(3)

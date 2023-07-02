@@ -1,4 +1,4 @@
-use std::str::FromStr;
+use std::{str::FromStr, fs::read_to_string};
 
 struct Range {
     lower: u32,
@@ -20,7 +20,8 @@ impl FromStr for Range {
 }
 
 fn main() {
-    let result = include_str!("../../input/day04.txt")
+    let input = read_to_string("input/day04.txt").unwrap();
+    let result = input
     .lines()
     .filter(|line| {
         let (first, second) = line.split_once(',').unwrap();
